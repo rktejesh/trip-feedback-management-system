@@ -1,0 +1,398 @@
+{
+    "tables": {
+        "Drivers": {
+            "tableName": "Drivers",
+            "schema": {
+                "driverID": {
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "driverID",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "allowNull": false,
+                    "field": "name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "licenseNumber": {
+                    "allowNull": false,
+                    "field": "licenseNumber",
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Feedbacks": {
+            "tableName": "Feedbacks",
+            "schema": {
+                "feedbackID": {
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "feedbackID",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "tripID": {
+                    "references": {
+                        "model": "Trips",
+                        "key": "tripID"
+                    },
+                    "field": "tripID",
+                    "allowNull": true,
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "travelerID": {
+                    "references": {
+                        "model": "Travelers",
+                        "key": "travelerID"
+                    },
+                    "field": "travelerID",
+                    "allowNull": true,
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "feedbackDate": {
+                    "allowNull": false,
+                    "field": "feedbackDate",
+                    "seqType": "Sequelize.DATE"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "FeedbackResponses": {
+            "tableName": "FeedbackResponses",
+            "schema": {
+                "responseID": {
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "responseID",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "feedbackID": {
+                    "references": {
+                        "model": "Feedbacks",
+                        "key": "feedbackID"
+                    },
+                    "field": "feedbackID",
+                    "allowNull": true,
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "questionID": {
+                    "references": {
+                        "model": "Questions",
+                        "key": "questionID"
+                    },
+                    "field": "questionID",
+                    "allowNull": true,
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "response": {
+                    "allowNull": false,
+                    "field": "response",
+                    "seqType": "Sequelize.TEXT"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Questions": {
+            "tableName": "Questions",
+            "schema": {
+                "questionID": {
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "questionID",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "content": {
+                    "allowNull": false,
+                    "field": "content",
+                    "seqType": "Sequelize.TEXT"
+                },
+                "questionType": {
+                    "allowNull": false,
+                    "field": "questionType",
+                    "seqType": "Sequelize.STRING"
+                },
+                "options": {
+                    "field": "options",
+                    "seqType": "Sequelize.JSON"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "TransportManagers": {
+            "tableName": "TransportManagers",
+            "schema": {
+                "managerID": {
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "managerID",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "allowNull": false,
+                    "field": "name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "email": {
+                    "allowNull": false,
+                    "unique": true,
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "password": {
+                    "allowNull": false,
+                    "field": "password",
+                    "seqType": "Sequelize.STRING"
+                },
+                "verifyToken": {
+                    "defaultValue": {
+                        "value": null
+                    },
+                    "field": "verifyToken",
+                    "seqType": "Sequelize.STRING"
+                },
+                "isVerified": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "isVerified",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Travelers": {
+            "tableName": "Travelers",
+            "schema": {
+                "travelerID": {
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "travelerID",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "allowNull": false,
+                    "field": "name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "email": {
+                    "allowNull": false,
+                    "unique": true,
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "password": {
+                    "allowNull": false,
+                    "field": "password",
+                    "seqType": "Sequelize.STRING"
+                },
+                "verifyToken": {
+                    "defaultValue": {
+                        "value": null
+                    },
+                    "field": "verifyToken",
+                    "seqType": "Sequelize.STRING"
+                },
+                "isVerified": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "isVerified",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Trips": {
+            "tableName": "Trips",
+            "schema": {
+                "tripID": {
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "tripID",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "date": {
+                    "allowNull": false,
+                    "field": "date",
+                    "seqType": "Sequelize.DATE"
+                },
+                "destination": {
+                    "allowNull": false,
+                    "field": "destination",
+                    "seqType": "Sequelize.STRING"
+                },
+                "driverID": {
+                    "references": {
+                        "model": "Drivers",
+                        "key": "driverID"
+                    },
+                    "field": "driverID",
+                    "allowNull": true,
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "travelerID": {
+                    "references": {
+                        "model": "Travelers",
+                        "key": "TravelerID"
+                    },
+                    "field": "travelerID",
+                    "allowNull": true,
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Users": {
+            "tableName": "Users",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "firstName": {
+                    "allowNull": false,
+                    "field": "firstName",
+                    "seqType": "Sequelize.STRING"
+                },
+                "lastName": {
+                    "field": "lastName",
+                    "seqType": "Sequelize.STRING"
+                },
+                "email": {
+                    "allowNull": false,
+                    "field": "email",
+                    "seqType": "Sequelize.STRING"
+                },
+                "password": {
+                    "field": "password",
+                    "seqType": "Sequelize.STRING"
+                },
+                "profilePic": {
+                    "field": "profilePic",
+                    "seqType": "Sequelize.STRING"
+                },
+                "isAdmin": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "isAdmin",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "verifyToken": {
+                    "defaultValue": {
+                        "value": null
+                    },
+                    "field": "verifyToken",
+                    "seqType": "Sequelize.STRING"
+                },
+                "isVerified": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "isVerified",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        }
+    },
+    "path": "/home/netagainsdevelopersde/express-sequelize-api-boilerplate/src/migrations/_current.json",
+    "backupPath": "/home/netagainsdevelopersde/express-sequelize-api-boilerplate/src/migrations/_current_bak.json",
+    "exists": false,
+    "revision": 1
+}
